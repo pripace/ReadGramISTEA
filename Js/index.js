@@ -1,4 +1,3 @@
-
 function getDate() {
   const today = new Date();
   const date = today.toLocaleDateString('es-AR');
