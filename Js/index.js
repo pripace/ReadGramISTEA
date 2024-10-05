@@ -28,7 +28,11 @@ function retornarCard() {
 function goCamara(){
   const camara = document.getElementById('publish');
   camara.addEventListener('click', () => {
-    window.location.href = 'camara.html';
+    if (navigator.onLine){
+      window.location.href = 'camara.html';
+    } else {
+      camara.disabled;
+    }
   })
 }
 

@@ -51,7 +51,11 @@ function crearCard(imageSrc, userReviewText) {
   });
 
   publishButton.addEventListener('click', () => {
-    crearCard(mainImage.src, userReview.value);
+    if (navigator.onLine) {
+      crearCard(mainImage.src, userReview.value);
+    } else {
+      camara.disabled;
+    }
   });
 
   cancelButton.addEventListener('click', () => {
