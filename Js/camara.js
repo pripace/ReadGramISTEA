@@ -14,19 +14,22 @@ function retornarCardHTML(imageSrc, userReviewText) {
       <div class="foto">
         <img src="${imageSrc}" alt="Foto" id="mainImage">
         <p id="datetime">${getDate()}</p>
-        <label for="inputFile" id='subirFoto'><img src="./images/camera.png" alt="Subir Foto"></label>
+        <label for="inputFile" id="subirFoto">
+          <img src="./images/camera.png" alt="Subir Foto">
+        </label>
         <input type="file" id="inputFile" multiple accept="image/*">
       </div>
       <div class="details">
         <h3 id="title">¿Qué leíste hoy?</h3>
         <p id="review">${userReviewText}</p>
-        <textarea id="userReview" rows="4" cols="30" placeholder="Escribe tu reseña aquí..."></textarea>
+        <textarea id="userReview" placeholder="Escribe tu reseña aquí..."></textarea>
       </div>
       <button id="publish">Publicar</button>
       <button id="cancel">Cancelar</button>
     </div>
   `;
 }
+
 
 function crearCard(imageSrc, userReviewText) {
   const card = document.getElementById('card');
@@ -50,6 +53,10 @@ function crearCard(imageSrc, userReviewText) {
     }
   });
 
+  mainImage.addEventListener('dblclick', () => {
+    inputFiles.click();
+  });
+
   publishButton.addEventListener('click', () => {
     if (navigator.onLine) {
       crearCard(mainImage.src, userReview.value);
@@ -68,4 +75,5 @@ function crearCard(imageSrc, userReviewText) {
 }
 
 crearCard(defaultImageSrc, reviewPlaceholder);
+
 
