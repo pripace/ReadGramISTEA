@@ -84,13 +84,13 @@ function crearCard(imageSrc, userReviewText) {
           .then(data => {
             if (data) {
               alert('Gracias por tu publicación querido lector!');
-              document.getElementById('userReview').style.display = 'none';
+              window.location.href = 'index.html';
             } else {
               alert('Error al publicar :(');
             }
           })
           .catch(error => {
-            console.error('Error al publicar.', error);
+            console.error(error);
           });
       };
     } else {
