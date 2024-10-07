@@ -7,6 +7,10 @@ body {
   background-color: #ccc;
 }
 
+h1 {
+    color: #1fc3af;
+}
+
 .div-card {
   display: flex;
   flex-direction: column;
@@ -31,10 +35,10 @@ body {
   border-radius: 5px;
 }
 
-label#subirFoto img {
-  width: 24px;
-  height: 24px;
+label#subirFoto img, #publish img {
   border-radius: 5px;
+  height: 24px;
+  width: auto;
 }
 
 button {

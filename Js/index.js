@@ -17,21 +17,20 @@ function retornarCard() {
     </div>
     <div class="details">
       <h3 id="title">¿Qué leíste hoy?</h3>
-      <p id="review">Cuéntanos de tu libro</p>
+      <p id="review">Crea una nueva publicación</p>
     </div>
-    <button id="publish">Crear publicación</button>
-    <button id="cancel">Cancelar</button>
+    <button id="publish"><img src="./images/camera.png" alt="Subir Foto"></button>
   </div>
 `
 }
 
 function goCamara(){
-  const camara = document.getElementById('publish');
-  camara.addEventListener('click', () => {
+  const publishButton = document.getElementById('publish');
+  publishButton.addEventListener('click', () => {
     if (navigator.onLine){
       window.location.href = 'camara.html';
     } else {
-      camara.disabled;
+      publishButton.disabled;
     }
   })
 }

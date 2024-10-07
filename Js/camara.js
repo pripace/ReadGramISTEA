@@ -1,5 +1,6 @@
-const reviewPlaceholder = "Ingresa una reseña de tu libro";
-const defaultImageSrc = "././images/book.png";
+const reviewPlaceholder = "Ingresa una reseña de tu libro:";
+const defaultImageSrc = "././images/camera.png";
+const apiUrl = 'https://6703cf14ab8a8f892731bb24.mockapi.io/Images';
 
 function getDate() {
   const today = new Date();
@@ -14,10 +15,7 @@ function retornarCardHTML(imageSrc, userReviewText) {
       <div class="foto">
         <img src="${imageSrc}" alt="Foto" id="mainImage">
         <p id="datetime">${getDate()}</p>
-        <label for="inputFile" id="subirFoto">
-          <img src="./images/camera.png" alt="Subir Foto">
-        </label>
-        <input type="file" id="inputFile" multiple accept="image/*">
+        <input type="file" id="inputFile" multiple accept=".png, .jpg, .gif, .bmp" capture='user'> 
       </div>
       <div class="details">
         <h3 id="title">¿Qué leíste hoy?</h3>
@@ -30,20 +28,19 @@ function retornarCardHTML(imageSrc, userReviewText) {
   `;
 }
 
-
 function crearCard(imageSrc, userReviewText) {
   const card = document.getElementById('card');
   card.innerHTML = retornarCardHTML(imageSrc, userReviewText);
 
-  const inputFiles = document.getElementById('inputFile');
+  const inputCamera = document.getElementById('inputFile');
   const mainImage = document.getElementById('mainImage');
   const userReview = document.getElementById('userReview');
   const review = document.getElementById('review');
   const publishButton = document.getElementById('publish');
   const cancelButton = document.getElementById('cancel');
 
-  inputFiles.addEventListener('change', () => {
-    const files = inputFiles.files;
+  inputCamera.addEventListener('change', () => {
+    const files = inputCamera.files;
     if (files.length > 0) {
       const reader = new FileReader();
       reader.onload = (event) => {
@@ -54,14 +51,51 @@ function crearCard(imageSrc, userReviewText) {
   });
 
   mainImage.addEventListener('dblclick', () => {
-    inputFiles.click();
+    inputCamera.click();
   });
 
   publishButton.addEventListener('click', () => {
     if (navigator.onLine) {
-      crearCard(mainImage.src, userReview.value);
+      const canvas = document.createElement('canvas');
+      const img = new Image();
+      img.src = mainImage.src;
+      img.onload = () => {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext('2d');
+        ctx.drawImage(img, 0, 0);
+        const base64Image = canvas.toDataURL('image/webp');
+
+        const postData = {
+          title: 'Hoy leí:',
+          review: userReview.value,
+          image: base64Image,
+          datetime: `${getDate()}`
+        };
+
+        fetch(apiUrl, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(postData)
+        })
+          .then(response => response.json())
+          .then(data => {
+            if (data) {
+              alert('Gracias por tu publicación querido lector!');
+              document.getElementById('userReview').style.display = 'none';
+            } else {
+              alert('Error al publicar :(');
+            }
+          })
+          .catch(error => {
+            console.error('Error al publicar.', error);
+          });
+      };
     } else {
-      camara.disabled;
+      publishButton.disabled = true;
+      return alert('Comprueba tu conexión a internet y vuelve a intentarlo.');
     }
   });
 
@@ -75,5 +109,3 @@ function crearCard(imageSrc, userReviewText) {
 }
 
 crearCard(defaultImageSrc, reviewPlaceholder);
-
-
