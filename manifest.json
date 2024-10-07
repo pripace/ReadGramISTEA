@@ -1,7 +1,6 @@
 {
     "short_name": "Red Social",
     "name": "ReadGram",
-    "version": "1.0.1",
     "start_url": "/",
     "background_color": "#ccc",
     "theme_color": "#1fc3af",
@@ -9,7 +8,7 @@
     "scope": "/",
     "display": "standalone",
     "orientation": "portrait",
-    "id": "/",
+    "id": "/manifest.json",
     "icons": [
         {
             "src": "./images/icon512.png",
@@ -33,3 +32,4 @@
         }
     ]
 }
+
