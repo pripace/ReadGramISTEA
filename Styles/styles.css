@@ -16,7 +16,7 @@ h1 {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  margin: 6px;
+  margin: 10px;
   padding: 10px;
   text-align: center;
   border-radius: 10px;
@@ -35,11 +35,14 @@ h1 {
   border-radius: 5px;
 }
 
-label#subirFoto img,
-.publish-btn img {
-  border-radius: 5px;
-  height: 24px;
-  width: auto;
+ .details {
+  display: flex; 
+  flex-direction: column; 
+  align-items: center; 
+} 
+
+.details h3, p{
+  margin: 10px;
 }
 
 button {
@@ -52,6 +55,24 @@ button {
   border-radius: 10px;
 }
 
+.publish-btn {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border-style: dashed;
+  background-color: #1fc3af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;  
+  padding: 0; 
+}
+
+.publish-btn img {
+  height: 26px;
+  width: 26px;
+}
+
 button#cancel {
   background-color: #e14857;
 }
@@ -62,6 +83,7 @@ button:hover {
 
 #datetime {
   font-size: 0.7em;
+  margin-top: auto;
 }
 
 input#inputFile {
