@@ -42,9 +42,11 @@ function goCamara() {
 }
 
 function loadPosts() {
-  fetch(`${apiUrl}?sortBy=datetime&order=desc`)
+  fetch(apiUrl)
     .then(response => response.json())
     .then(posts => {
+      posts.sort((a, b) => new Date(b.datetime) - new Date(a.datetime));
+
       const cardContainer = document.getElementById('cardContainer');
       cardContainer.innerHTML = '';
 
@@ -75,6 +77,7 @@ function loadPosts() {
       retornarCard();
     });
 }
+
 
 retornarCard();
 loadPosts();

@@ -11,21 +11,21 @@ function getDate() {
 
 function retornarCardHTML(imageSrc, userReviewText) {
   return `
-    <div class="div-card">
-      <div class="foto">
-        <img src="${imageSrc}" alt="Foto" id="mainImage">
-        <p id="datetime">${getDate()}</p>
-        <input type="file" id="inputFile" multiple accept=".png, .jpg, .gif, .bmp" capture='user'> 
+      <div class="div-card">
+        <div class="foto">
+          <img src="${imageSrc}" alt="Foto" id="mainImage">
+          <p id="datetime">${getDate()}</p>
+          <input type="file" id="inputFile" multiple accept=".png, .jpg, .gif, .bmp" capture='user'> 
+        </div>
+        <div class="details">
+          <h3 id="title">¿Qué leíste hoy?</h3>
+          <p id="review">${userReviewText}</p>
+          <input type="text" id="userReview" placeholder="Escribe tu reseña aquí...">
+        </div>
+        <button id="publish">Publicar</button>
+        <button id="cancel">Cancelar</button>
       </div>
-      <div class="details">
-        <h3 id="title">¿Qué leíste hoy?</h3>
-        <p id="review">${userReviewText}</p>
-        <textarea id="userReview" placeholder="Escribe tu reseña aquí..."></textarea>
-      </div>
-      <button id="publish">Publicar</button>
-      <button id="cancel">Cancelar</button>
-    </div>
-  `;
+    `;
 }
 
 function crearCard(imageSrc, userReviewText) {
