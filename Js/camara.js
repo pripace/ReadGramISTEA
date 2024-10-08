@@ -101,6 +101,7 @@ function crearCard(imageSrc, userReviewText) {
 
   cancelButton.addEventListener('click', () => {
     crearCard(defaultImageSrc, reviewPlaceholder);
+    window.location.href = 'index.html';
   });
 
   userReview.addEventListener('input', () => {
