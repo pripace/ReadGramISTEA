@@ -83,7 +83,7 @@ function crearCard(imageSrc, userReviewText) {
           .then(response => response.json())
           .then(data => {
             if (data) {
-              alert('Gracias por tu publicación querido lector!');
+              alert('¡Gracias por tu publicación querido lector! Serás redirigido al sitio. ');
               window.location.href = 'index.html';
             } else {
               alert('Error al publicar :(');
